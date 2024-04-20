@@ -1,0 +1,18 @@
+{% extends 'catalog/base.html' %}
+
+{% block content %}
+
+<div class="row">
+    <div class="col">
+        <h2 class="text-center">{{ object.name }}</h2>
+        <div class="container d-flex justify-content-center">
+            <div>
+                <h4>Стоимость {{ object.price }} р.</h4>
+                <h4>{{ object.description|slice:100 }}</h4>
+                <h6>Категория: {{ object.category.name }}</h6>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}
