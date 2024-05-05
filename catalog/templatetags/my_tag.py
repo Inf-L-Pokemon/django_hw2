@@ -7,4 +7,4 @@ register = template.Library()
 def my_media(data):
     if data:
         return f'/media/{data}'
-    return '#'
+    return '/media/image_not_found.jpg'
