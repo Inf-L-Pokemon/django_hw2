@@ -360,6 +360,16 @@ files = [
 ]
 
 [[package]]
+name = "pytils"
+version = "0.4.1"
+description = "Russian-specific string utils"
+optional = false
+python-versions = "^3.7"
+files = [
+    {file = "pytils-0.4.1.tar.gz", hash = "sha256:aa109b1bc0ec4bdb7c9768520110348d8aeb0706600e6cf641272e6850e26eab"},
+]
+
+[[package]]
 name = "six"
 version = "1.16.0"
 description = "Python 2 and 3 compatibility utilities"
@@ -444,4 +454,4 @@ files = [
 [metadata]
 lock-version = "2.0"
 python-versions = "^3.12"
-content-hash = "b11369474b187c5554a771cbcd1c09c054e84df33b326fa4cbad368823560e59"
+content-hash = "00747a10432d307d233cea6bf88d997e8305e886cc2bb1298afb505edba4b33e"

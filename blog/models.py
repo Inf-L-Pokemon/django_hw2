@@ -3,7 +3,7 @@ from django.db import models
 
 class BlogPost(models.Model):
     title = models.CharField(max_length=150, null=False, blank=False, verbose_name="Заголовок")
-    slug = models.CharField(max_length=50, unique=True, null=False, blank=False, verbose_name="URL")
+    slug = models.CharField(max_length=150, null=True, blank=True, verbose_name="URL")
     body = models.TextField(verbose_name="Содержимое")
     preview = models.ImageField(upload_to="blog/%Y/%m", verbose_name="Изображение")
     date_published = models.DateField(auto_now_add=True, verbose_name="Дата публикации")

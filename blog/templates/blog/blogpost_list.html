@@ -19,7 +19,7 @@
                 </div>
                 <div class="card-body">
                     <ul class="list-unstyled mt-3 mb-4 text-start m-3">
-                        <li>- {{ object.body|slice:100 }}</li>
+                        <li>{{ object.body|slice:100 }}</li>
                     </ul>
                     <div class="d-grid gap-2 col-10 mx-auto">
                         <a class="btn btn-lg btn-block btn-outline-info" href="{% url 'blog:view_post' object.pk %}"
