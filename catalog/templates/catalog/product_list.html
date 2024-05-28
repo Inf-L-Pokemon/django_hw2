@@ -15,6 +15,9 @@
                 </div>
                 <div class="card-body">
                     <h1 class="card-title pricing-card-title">{{ object.price }} р.</h1>
+                    {% if object.name_version %}
+                    <h6>Версия: {{ object.name_version }}. № {{ object.number_version }}</h6>
+                    {% endif %}
                     <ul class="list-unstyled mt-3 mb-4 text-start m-3">
                         <li>- {{ object.description|slice:100 }}</li>
                     </ul>
