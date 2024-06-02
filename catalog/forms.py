@@ -16,7 +16,7 @@ class StyleFormMixin:
 class ProductForm(StyleFormMixin, forms.ModelForm):
     class Meta:
         model = Product
-        fields = ('name', 'description', 'preview_image', 'price')
+        fields = ('category', 'name', 'description', 'preview_image', 'price')
 
     def clean_name(self):
         word_blacklist = (
