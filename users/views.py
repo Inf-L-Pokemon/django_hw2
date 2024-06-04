@@ -1,9 +1,10 @@
 import secrets
 
+from django.contrib.auth.hashers import make_password
 from django.core.mail import send_mail
-from django.shortcuts import get_object_or_404, redirect
+from django.shortcuts import get_object_or_404, redirect, render
 from django.urls import reverse_lazy, reverse
-from django.views.generic import CreateView
+from django.views.generic import CreateView, UpdateView
 
 from config.settings import EMAIL_HOST_USER
 from users.forms import UserCreateForm
@@ -39,3 +40,22 @@ def email_verification(request, token):
     user.save()
 
     return redirect(reverse('users:login'))
+
+
+def new_password(request):
+    if request.method == 'POST':
+        email = request.POST['email']
+        user = get_object_or_404(User, email=email)
+
+        new_pass = secrets.token_hex(6)
+        user.password = make_password(new_pass)
+        user.save()
+        send_mail(
+            subject='Смена пароля',
+            message=f'На аккаунте установлен новый пароль: {new_pass}',
+            from_email=EMAIL_HOST_USER,
+            recipient_list=[user.email],
+            fail_silently=False
+        )
+        return redirect(reverse('users:login'))
+    return render(request, 'users/new_password.html')
