@@ -2,38 +2,40 @@
 
 {% block content %}
 
-<div class="container">
-    <div class="col-12 mb-3">
-        <a class="btn btn-outline-primary" href="{% url 'catalog:product_create' %}">Добавить продукт</a>
-    </div>
-    <div class="row text-center">
-        {% for object in object_list %}
-        <div class="col-3">
-            <div class="card mb-4 box-shadow">
-                <div class="card-header">
-                    <h4 class="my-0 font-weight-normal">{{ object.name }}</h4>
-                </div>
-                <div class="card-body">
-                    <h1 class="card-title pricing-card-title">{{ object.price }} р.</h1>
-                    {% if object.name_version %}
-                    <h6>Версия: {{ object.name_version }}. № {{ object.number_version }}</h6>
-                    {% endif %}
-                    <ul class="list-unstyled mt-3 mb-4 text-start m-3">
-                        <li>- {{ object.description|slice:100 }}</li>
-                    </ul>
-                    <div class="d-grid gap-2 col-10 mx-auto">
-                        <a class="btn btn-lg btn-block btn-outline-info"
-                           href="{% url 'catalog:product_detail' object.pk %}"
-                           role="button">О товаре</a>
-                        <a class="btn btn-lg btn-block btn-outline-info"
-                           href="{% url 'catalog:product_update' object.pk %}"
-                           role="button">Изменить</a>
-                        <button type="button" class="btn btn-lg btn-block btn-primary">Купить</button>
+    <div class="container">
+        {% if user.is_authenticated %}
+            <div class="col-12 mb-3">
+                <a class="btn btn-outline-primary" href="{% url 'catalog:product_create' %}">Добавить продукт</a>
+            </div>
+        {% endif %}
+        <div class="row text-center">
+            {% for object in object_list %}
+                <div class="col-3">
+                    <div class="card mb-4 box-shadow">
+                        <div class="card-header">
+                            <h4 class="my-0 font-weight-normal">{{ object.name }}</h4>
+                        </div>
+                        <div class="card-body">
+                            <h1 class="card-title pricing-card-title">{{ object.price }} р.</h1>
+                            {% if object.name_version %}
+                                <h6>Версия: {{ object.name_version }}. № {{ object.number_version }}</h6>
+                            {% endif %}
+                            <ul class="list-unstyled mt-3 mb-4 text-start m-3">
+                                <li>- {{ object.description|slice:100 }}</li>
+                            </ul>
+                            <div class="d-grid gap-2 col-10 mx-auto">
+                                <a class="btn btn-lg btn-block btn-outline-info"
+                                   href="{% url 'catalog:product_detail' object.pk %}"
+                                   role="button">О товаре</a>
+                                <a class="btn btn-lg btn-block btn-outline-info"
+                                   href="{% url 'catalog:product_update' object.pk %}"
+                                   role="button">Изменить</a>
+                                <button type="button" class="btn btn-lg btn-block btn-primary">Купить</button>
+                            </div>
+                        </div>
                     </div>
                 </div>
-            </div>
+            {% endfor %}
         </div>
-        {% endfor %}
     </div>
-
-    {% endblock %}
+{% endblock %}
