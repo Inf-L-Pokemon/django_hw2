@@ -27,9 +27,11 @@
                                 <a class="btn btn-lg btn-block btn-outline-info"
                                    href="{% url 'catalog:product_detail' object.pk %}"
                                    role="button">О товаре</a>
-                                <a class="btn btn-lg btn-block btn-outline-info"
-                                   href="{% url 'catalog:product_update' object.pk %}"
-                                   role="button">Изменить</a>
+                                {% if perms.catalog.can_change_is_published and perms.catalog.can_change_description and perms.catalog.can_change_category or user == object.owner %}
+                                    <a class="btn btn-lg btn-block btn-outline-info"
+                                       href="{% url 'catalog:product_update' object.pk %}"
+                                       role="button">Изменить</a>
+                                {% endif %}
                                 <button type="button" class="btn btn-lg btn-block btn-primary">Купить</button>
                             </div>
                         </div>
