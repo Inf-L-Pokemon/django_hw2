@@ -7,7 +7,15 @@ from django.urls.base import reverse
 from django.views.generic import ListView, DetailView, TemplateView, CreateView, UpdateView, DeleteView
 
 from catalog.forms import ProductForm, VersionForm, ProductModeratorForm
-from catalog.models import Product, Version
+from catalog.models import Product, Version, Category
+from catalog.services import get_category_list
+
+
+class CategoryListView(ListView):
+    model = Category
+
+    def get_queryset(self):
+        return get_category_list()
 
 
 class ProductCreateView(LoginRequiredMixin, CreateView):
@@ -107,3 +115,7 @@ class ContactsTemplateView(TemplateView):
 
         print(f"Имя:{name}\nТелефон: {phone}\nСообщение: {message}")
         return HttpResponseRedirect('/')
+
+
+class PlugTemplateView(TemplateView):
+    template_name = 'catalog/plug.html'
